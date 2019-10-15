@@ -1,0 +1,20 @@
+<ion-menu side="start" type="overlay" [content]="content">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Mylem</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <button ion-item>
+        <ion-icon name="home" item-start color="grey"></ion-icon>
+        Accueil
+      </button>
+      <button ion-item>
+        <ion-icon name="log-out" item-start color="grey"></ion-icon>
+        Deconnexion
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+<ion-nav #content [root]="rootPage"></ion-nav>
