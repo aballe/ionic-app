@@ -1,17 +1,22 @@
 <ion-menu side="start" type="overlay" [content]="content">
   <ion-header>
-    <ion-toolbar color="primary">
+    <ion-toolbar color="header">
       <ion-title>Mylem</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content>
     <ion-list>
-      <button ion-item>
+      <button ion-item color="body">
         <ion-icon name="home" item-start color="grey"></ion-icon>
         Accueil
       </button>
+    </ion-list>
+  </ion-content>
+  <ion-footer>
+    <ion-list>
       <button ion-item
-              (click)="onLogout()">
+              (click)="onLogout()"
+              color="body">
         <ion-icon name="log-out"
                   item-start
                   color="grey">
@@ -19,6 +24,6 @@
         Deconnexion
       </button>
     </ion-list>
-  </ion-content>
+  </ion-footer>
 </ion-menu>
 <ion-nav #content [root]="rootPage"></ion-nav>

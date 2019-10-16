@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="header">
     <ion-segment [(ngModel)]="mode">
       <ion-segment-button value="connect">
         <ion-icon name="person"></ion-icon>
@@ -23,11 +23,11 @@
       <ion-col col-12>
         <form [formGroup]="authForm">
           <ion-list>
-            <ion-item>
+            <ion-item color="body">
               <ion-label floating>Nom d'utilisateur ou adresse mail</ion-label>
               <ion-input type="text" formControlName="user"></ion-input>
             </ion-item>
-            <ion-item>
+            <ion-item color="body">
               <ion-label floating>Mot de passe</ion-label>
               <ion-input type="password" formControlName="password"></ion-input>
             </ion-item>

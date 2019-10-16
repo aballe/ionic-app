@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Platform, Nav } from 'ionic-angular';
+import { Platform, Nav, MenuController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from "@ionic/storage";
@@ -18,6 +18,7 @@ export class MyApp {
     platform:             Platform,
     statusBar:            StatusBar,
     splashScreen:         SplashScreen,
+    private menuCtrl:     MenuController,
     private storage:      Storage,
     private authProvider: AuthProvider
   ) {
@@ -41,5 +42,6 @@ export class MyApp {
   onLogout() {
     this.authProvider.logout();
     this.nav.setRoot(AuthPage, {mode: 'connect'});
+    this.menuCtrl.close();
   }
 }

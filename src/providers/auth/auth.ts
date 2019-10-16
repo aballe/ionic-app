@@ -59,6 +59,7 @@ export class AuthProvider {
       return this.storage.set(TOKEN_KEY, token).then(
         () => {
           this.authenticationState.next(true);
+          this.setToken(token);
         }
       );
     });
