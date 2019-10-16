@@ -10,8 +10,12 @@
         <ion-icon name="home" item-start color="grey"></ion-icon>
         Accueil
       </button>
-      <button ion-item>
-        <ion-icon name="log-out" item-start color="grey"></ion-icon>
+      <button ion-item
+              (click)="onLogout()">
+        <ion-icon name="log-out"
+                  item-start
+                  color="grey">
+        </ion-icon>
         Deconnexion
       </button>
     </ion-list>

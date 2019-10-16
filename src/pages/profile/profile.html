@@ -3,10 +3,34 @@
     <button ion-button icon-only menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Profil</ion-title>
+    <ion-title>Mon compte</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+  <form #formCtrl="ngForm">
+    <div align="center" *ngIf="formCtrl.form.valid">
 
+      <h1> Profile</h1>
+      <img class="profile-image" src="" alt="profile">
+      <h4>{{person.email}}, {{person.email}}</h4>
+    </div>
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Name</ion-label>
+        <ion-input type="text" [(ngModel)]="person.email" name="name" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Company</ion-label>
+        <ion-select [(ngModel)]="person.email" name="company" required>
+          <ion-option value="Maybank">Maybank</ion-option>
+          <ion-option value="CIMB">CIMB</ion-option>
+          <ion-option value="Public Bank">Public Bank</ion-option>
+        </ion-select>
+      </ion-item>
+
+    </ion-list>
+    <button color="secondary" [disabled]="!formCtrl.form.valid" ion-button block (click)="save()">Save</button>
+    <button color="danger" ion-button block (click)="reset()">Reset</button>
+  </form>
 </ion-content>

@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-navbar>
+    <ion-segment [(ngModel)]="mode">
+      <ion-segment-button value="connect">
+        <ion-icon name="person"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="new">
+        <ion-icon name="person-add"></ion-icon>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding [ngSwitch]="mode">
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12>
+        <ion-title *ngSwitchCase="'connect'">Connexion</ion-title>
+        <ion-title *ngSwitchCase="'new'">Nouvel utilisateur</ion-title>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12>
+        <form [formGroup]="authForm">
+          <ion-list>
+            <ion-item>
+              <ion-label floating>Nom d'utilisateur ou adresse mail</ion-label>
+              <ion-input type="text" formControlName="user"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label floating>Mot de passe</ion-label>
+              <ion-input type="password" formControlName="password"></ion-input>
+            </ion-item>
+          </ion-list>
+          <button ion-button full (click)="onSubmitForm()" >
+            <span *ngSwitchCase="'connect'">Connexion</span>
+            <span *ngSwitchCase="'new'">Créer mon compte</span>
+          </button>
+          <span ion-text color="danger">{{ errorMessage }}</span>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
