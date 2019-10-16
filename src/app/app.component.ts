@@ -28,6 +28,7 @@ export class MyApp {
       this.storage.ready().then(() => {
         this.storage.get('auth-token').then((state) => {
           if (state) {
+            this.authProvider.setToken(state);
             this.nav.setRoot(TabsPage);
           } else {
             this.nav.setRoot(AuthPage, {mode: 'connect'});

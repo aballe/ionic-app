@@ -12,6 +12,7 @@ const TOKEN_KEY = 'auth-token';
 export class AuthProvider {
   private headers             = new HttpHeaders({'Content-Type':'application/json'});
   public authenticationState  = new BehaviorSubject(false);
+  private token               = new BehaviorSubject(null);
 
   constructor(
     private http:     HttpClient,
@@ -30,7 +31,7 @@ export class AuthProvider {
   }
 
   findOneUserConnected() {
-    return this.http.get<User>("./api/user/" + this.getToken(), {headers: this.headers});
+    return this.http.get<User>("./api/user/" + this.token.value, { headers: this.headers });
   }
 
   createOneUser(user: string, password: string) {
@@ -49,15 +50,8 @@ export class AuthProvider {
     });
   }
 
-  getToken() {
-    var token = '';
-    this.storage.ready().then(() => {
-      this.storage.get(TOKEN_KEY).then((res) => {
-        token = res.toString();
-      });
-    });
-
-    return token;
+  setToken(token: string) {
+    this.token.next(token);
   }
 
   login(token: string = null) {

@@ -12,8 +12,6 @@ export class ProfilePage {
   person: User = new User();
 
   constructor(
-    private navCtrl: NavController,
-    private navParams: NavParams,
     private authProvider: AuthProvider
   ) { }
 
