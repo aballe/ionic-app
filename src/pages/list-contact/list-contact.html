@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Choisissez votre contact</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <button ion-item
+            ion-start
+            *ngFor="let contact of contactList;"
+            (click)="onLoadContactMessage()">
+      <ion-icon name="person"></ion-icon>
+      {{ contact.name }} {{ contact.lastname }}
+    </button>
+  </ion-list>
+</ion-content>

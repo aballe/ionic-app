@@ -10,9 +10,10 @@ import {TabsPage} from "../tabs/tabs";
   templateUrl: 'auth.html',
 })
 export class AuthPage implements OnInit {
-  mode: string;
-  authForm: FormGroup;
+  mode:         string;
   errorMessage: string;
+  connectForm:  FormGroup;
+  newForm:      FormGroup;
 
   constructor(
     private navCtrl:      NavController,
@@ -29,8 +30,14 @@ export class AuthPage implements OnInit {
   }
 
   initForm() {
-    this.authForm = this.formBuilder.group({
-      user: ['', Validators.required],
+    this.newForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      email:    ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
+    });
+
+    this.connectForm = this.formBuilder.group({
+      user:     ['', Validators.required],
       password: ['', Validators.required]
     });
   }
@@ -41,11 +48,12 @@ export class AuthPage implements OnInit {
     });
     loader.present();
 
-    const user     = this.authForm.get('user').value;
-    const password = this.authForm.get('password').value;
-
     if (this.mode === 'new') {
-      this.authProvider.createOneUser(user, password).subscribe(
+      const username = this.newForm.get('username').value;
+      const email    = this.newForm.get('email').value;
+      const password = this.newForm.get('password').value;
+
+      this.authProvider.createOneUser(username, email, password).subscribe(
         () => {
           loader.dismiss();
           this.toastCtrl.create({
@@ -61,6 +69,9 @@ export class AuthPage implements OnInit {
         }
       );
     } else if (this.mode === 'connect') {
+      const user     = this.connectForm.get('user').value;
+      const password = this.connectForm.get('password').value;
+
       this.authProvider.findOneUser(user, password).subscribe(
         (user) => {
           loader.dismiss();

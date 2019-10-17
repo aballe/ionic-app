@@ -7,12 +7,15 @@ import { Storage } from "@ionic/storage";
 import { AuthProvider } from '../providers/auth/auth';
 import { TabsPage } from '../pages/tabs/tabs';
 import { AuthPage } from '../pages/auth/auth';
+import { SettingsPage } from "../pages/settings/settings";
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
+  homePage = TabsPage;
+  settingsPage = SettingsPage;
 
   constructor(
     platform:             Platform,
@@ -37,6 +40,11 @@ export class MyApp {
         });
       });
     });
+  }
+
+  onNavigate(page: any) {
+    this.nav.setRoot(page);
+    this.menuCtrl.close();
   }
 
   onLogout() {

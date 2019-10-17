@@ -5,6 +5,16 @@ var User	     = require('./user');
 
 router.use(bodyParser.json());
 
+router.get('/users', function(req, res) {
+  User.findAllUsers(function(err, rows) {
+    if (err) {
+      res.status(400).json(err);
+    } else {
+      res.json(rows);
+    }
+  });
+});
+
 router.post('/login', function(req, res) {
   User.findOneUser(req.body, function(err, rows) {
     if (err) {
@@ -39,6 +49,16 @@ router.get('/user/:token', function(req, res) {
       res.status(400).json(err);
     } else {
       res.send(rows[0]);
+    }
+  });
+});
+
+router.post('/user/edit', function(req, res) {
+  User.updateOneUserConnected(req.body, function(err, rows) {
+    if (err) {
+      res.status(400).json(err);
+    } else {
+      res.json(rows);
     }
   });
 });

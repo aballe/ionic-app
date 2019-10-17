@@ -8,10 +8,25 @@
 </ion-header>
 
 <ion-content padding class="content">
+  <input type="file" id="fileLoader" #fileLoader name="files" title="Load File" hidden />
   <div align="center">
-    <ion-avatar class="avatar" class="ion-margin-start">
-      <img src="../../assets/imgs/avatar.svg">
+    <ion-avatar class="avatar ion-margin-start" (click)="presentActionSheet(fileLoader)">
+      <img id="checkinImage" [src]="person.photo" (load)="imageLoaded()">
     </ion-avatar>
-    <h4>{{person.name}} {{person.lastname}}, {{person.email}}</h4>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6>
+          <ion-input [(ngModel)]="person.name" text-right style="font-size: 20px" (blur)="onChangeProfile();"></ion-input>
+        </ion-col>
+        <ion-col col-6>
+          <ion-input [(ngModel)]="person.lastname" text-left style="font-size: 20px" (blur)="onChangeProfile();"></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12>
+          <ion-textarea placeholder="Dites nous en plus sur vous..." [(ngModel)]="person.description" (blur)="onChangeProfile();" text-center></ion-textarea>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </div>
 </ion-content>
