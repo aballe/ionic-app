@@ -9,11 +9,8 @@ help:
 		| sed 's/\(##\)/\t/' \
 		| expand -t14
 
-.PHONY: start
-start:
-		ionic serve
-
 .PHONY: build
 build:
 		npm install
+		npm install ./src/api
 		ionic serve
