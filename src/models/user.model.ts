@@ -8,6 +8,7 @@ export class User {
     public age:         number = 0,
     public name:        string = '',
     public lastname:    string = '',
+    public sexe:        string = '',
     public token:       string = ''
   ) {}
 }

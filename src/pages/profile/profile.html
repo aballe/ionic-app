@@ -11,20 +11,30 @@
   <input type="file" id="fileLoader" #fileLoader name="files" title="Load File" hidden />
   <div align="center">
     <ion-avatar class="avatar ion-margin-start" (click)="presentActionSheet(fileLoader)">
-      <img id="checkinImage" [src]="person.photo" (load)="imageLoaded()">
+      <img id="checkinImage" src="../../assets/imgs/avatar.svg" (load)="imageLoaded()">
     </ion-avatar>
     <ion-grid>
       <ion-row>
         <ion-col col-6>
-          <ion-input [(ngModel)]="person.name" text-right style="font-size: 20px" (blur)="onChangeProfile();"></ion-input>
+          <ion-input [(ngModel)]="person.name" text-right style="font-size: 22px" (blur)="onChangeProfile();"></ion-input>
         </ion-col>
         <ion-col col-6>
-          <ion-input [(ngModel)]="person.lastname" text-left style="font-size: 20px" (blur)="onChangeProfile();"></ion-input>
+          <ion-input [(ngModel)]="person.lastname" text-left style="font-size: 22px" (blur)="onChangeProfile();"></ion-input>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col col-12>
-          <ion-textarea placeholder="Dites nous en plus sur vous..." [(ngModel)]="person.description" (blur)="onChangeProfile();" text-center></ion-textarea>
+          <ion-input [(ngModel)]="person.email" text-center style="font-size: 15px" (blur)="onChangeProfile();"></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12>
+             {{ person.age }}, {{ person.sexe }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12 text-center>
+          <ion-textarea placeholder="Dites nous en plus sur vous..." [(ngModel)]="person.description" (blur)="onChangeProfile();"></ion-textarea>
         </ion-col>
       </ion-row>
     </ion-grid>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { User } from "../../models/user.model";
 import { AuthProvider } from "../../providers/auth/auth";
@@ -7,7 +7,7 @@ import { AuthProvider } from "../../providers/auth/auth";
   selector: 'page-profile',
   templateUrl: 'profile.html',
 })
-export class ProfilePage {
+export class ProfilePage implements OnInit {
   person: User = new User();
   processing: boolean;
 
@@ -15,7 +15,11 @@ export class ProfilePage {
     private authProvider: AuthProvider
   ) { }
 
-  ionViewWillEnter() {
+  ngOnInit() {
+    this.getUser();
+  }
+
+  getUser() {
     this.authProvider.findOneUserConnected().subscribe(
       (user) => {
         this.person = user;

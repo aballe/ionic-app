@@ -1,16 +1,23 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="header">
     <ion-title>Choisissez votre contact</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="dismissModal()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
   <ion-list>
     <button ion-item
             ion-start
             *ngFor="let contact of contactList;"
             (click)="onLoadContactMessage()">
-      <ion-icon name="person"></ion-icon>
+      <ion-avatar slot="end" class="avatar" item-start>
+        <img src="../../assets/imgs/avatar.svg" alt="avatar">
+      </ion-avatar>
       {{ contact.name }} {{ contact.lastname }}
     </button>
   </ion-list>
