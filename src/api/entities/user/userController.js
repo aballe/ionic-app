@@ -44,7 +44,7 @@ router.post('/register', function(req, res) {
 });
 
 router.get('/user/:token', function(req, res) {
-  User.findOneUserConnected(req.params.token, function(err, rows) {
+  User.findOneUserByToken(req.params.token, function(err, rows) {
     if (err) {
       res.status(400).json(err);
     } else {
@@ -59,6 +59,46 @@ router.post('/user/edit', function(req, res) {
       res.status(400).json(err);
     } else {
       res.json(rows);
+    }
+  });
+});
+
+router.post('/user/new/contact', function(req, res) {
+  User.createOneUserContact(req.body, function(err, rows) {
+    if (err) {
+      res.status(400).json(err);
+    } else {
+      res.json(req.body);
+    }
+  });
+});
+
+router.get('/user/contacts/:token', function(req, res) {
+  User.findAllUsersContact(req.params.token, function(err, rows) {
+    if (err) {
+      res.status(400).json(err);
+    } else {
+      res.send(rows);
+    }
+  });
+});
+
+router.get('/user/contact/:token', function(req, res) {
+  User.findOneUserByToken(req.params.token, function(err, rows) {
+    if (err) {
+      res.status(400).json(err);
+    } else {
+      res.send(rows);
+    }
+  });
+});
+
+router.delete('/user/remove/:token', function(req, res) {
+  User.removeOneUserByToken(req.params.token, function(err, rows) {
+    if (err) {
+      res.status(400).json(err);
+    } else {
+      res.json(req.body);
     }
   });
 });

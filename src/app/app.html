@@ -7,14 +7,12 @@
   </ion-header>
   <ion-content>
     <ion-list>
-      <button ion-item
-              color="body"
+      <button ion-item color="body"
               (click)="onNavigate(homePage)">
         <ion-icon name="home" item-start color="grey"></ion-icon>
         Accueil
       </button>
-      <button ion-item
-              color="body"
+      <button ion-item color="body"
               (click)="onNavigate(settingsPage)">
         <ion-icon name="settings" item-start color="grey"></ion-icon>
         Réglages
@@ -23,12 +21,11 @@
   </ion-content>
   <ion-footer>
     <ion-list class="disconnect">
-      <button ion-item
-              (click)="onLogout()"
-              color="body">
-        <ion-icon name="log-out" item-start color="grey">
+      <button ion-item color="danger"
+              (click)="onLogout()">
+        <ion-icon name="log-out" item-start color="light">
         </ion-icon>
-        Deconnexion
+        Déconnexion
       </button>
     </ion-list>
   </ion-footer>

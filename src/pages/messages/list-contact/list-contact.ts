@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {NavController, NavParams, ViewController } from 'ionic-angular';
 
-import { AuthProvider } from "../../providers/auth/auth";
-import { User } from "../../models/user.model";
+import { AuthProvider } from "../../../providers/auth/auth";
+import { User } from "../../../models/user.model";
 
 @Component({
   selector: 'page-list-contact',
@@ -10,6 +10,7 @@ import { User } from "../../models/user.model";
 })
 export class ListContactPage implements OnInit {
   contactList: User[];
+  userConnected: User;
 
   constructor(
     public navCtrl: NavController,
@@ -18,7 +19,8 @@ export class ListContactPage implements OnInit {
     private viewCtrl: ViewController) { }
 
   ngOnInit() {
-    this.authProvider.userList.subscribe(
+    this.authProvider.emitUserNotContact();
+    this.authProvider.userNotContact.subscribe(
       (values) => {
         this.contactList = values;
       },
@@ -26,10 +28,27 @@ export class ListContactPage implements OnInit {
         console.log(err);
       }
     );
-    this.authProvider.emitUsers();
+
+    this.authProvider.findOneUserConnected().subscribe(
+      (user) => {
+        this.userConnected = user;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+
   }
 
-  onLoadContactMessage() {
+  onLoadContactMessage(contact_email) {
+    this.authProvider.createOneUserContact(this.userConnected.email, contact_email).subscribe(
+      () => {
+        this.authProvider.emitUserContact();
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
     this.dismissModal();
   }
 

@@ -1,3 +1,18 @@
 page-single-message {
+  .message {
+    color: white;
+  }
 
+  .list-message {
+    display: inline-flex;
+    width: 100%;
+    position: absolute;
+    margin:0;
+    bottom: 0;
+  }
+
+  .button-message {
+    width: 55px;
+    background: #1DBD04;
+  }
 }

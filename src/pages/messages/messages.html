@@ -14,14 +14,14 @@
 
 <ion-content>
   <ion-list>
-    <button ion-item (click)="onLoadMessage()">
+    <button ion-item (click)="onLoadMessage(contact.token)" *ngFor="let contact of contactList;">
       <ion-avatar slot="end" class="avatar" item-start>
         <img src="../../assets/imgs/avatar.svg" alt="avatar">
       </ion-avatar>
       <ion-label>
-        <h3>John Doe</h3>
-        <p>dolor sit amet</p>
-        <p>consectetur adipiscing elit. Duis ut urna neque.</p>
+        <h3>{{ contact.name }} {{ contact.lastname }}</h3>
+        <p class="text">dolor sit amet</p>
+        <p class="text">consectetur adipiscing elit. Duis ut urna neque.</p>
       </ion-label>
     </button>
   </ion-list>

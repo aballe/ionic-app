@@ -15,9 +15,10 @@ import { ProfilePage } from '../pages/profile/profile';
 import { MessagesPage } from '../pages/messages/messages';
 import { AuthPage } from "../pages/auth/auth";
 import { SettingsPage } from '../pages/settings/settings';
-import { AuthProvider } from '../providers/auth/auth';
-import { ListContactPage } from "../pages/list-contact/list-contact";
+import { ListContactPage } from "../pages/messages/list-contact/list-contact";
 import { SingleMessagePage } from "../pages/messages/single-message/single-message";
+
+import { AuthProvider } from '../providers/auth/auth';
 
 @NgModule({
   declarations: [

@@ -81,6 +81,7 @@ export class AuthPage implements OnInit {
             position: 'bottom'
           }).present();
           this.authProvider.setToken(user[0].token);
+          this.authProvider.emitUserContact();
           this.authProvider.login(user[0].token);
           this.navCtrl.setRoot(TabsPage);
         },

@@ -14,11 +14,16 @@
     <button ion-item
             ion-start
             *ngFor="let contact of contactList;"
-            (click)="onLoadContactMessage()">
+            (click)="onLoadContactMessage(contact.email)">
       <ion-avatar slot="end" class="avatar" item-start>
-        <img src="../../assets/imgs/avatar.svg" alt="avatar">
+        <img src="../../../assets/imgs/avatar.svg" alt="avatar">
       </ion-avatar>
-      {{ contact.name }} {{ contact.lastname }}
+      <ion-label *ngIf="contact.name && contact.lastname">
+        {{ contact.name }} {{ contact.lastname }}
+      </ion-label>
+      <ion-label *ngIf="!contact.name && !contact.lastname">
+        {{ contact.username }} ({{ contact.email }})
+      </ion-label>
     </button>
   </ion-list>
 </ion-content>

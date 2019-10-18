@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="header">
     <button ion-button icon-only menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -7,6 +7,13 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <p>A venir</p>
+<ion-content>
+  <ion-list>
+    <ion-list-header>
+      Paramètres de compte
+    </ion-list-header>
+    <button ion-item (click)="onDeleteAccount()" class="button-delete-account">
+      Supprimer mon compte
+    </button>
+  </ion-list>
 </ion-content>

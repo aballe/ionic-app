@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar color="header">
-    <ion-segment [(ngModel)]="mode">
+    <ion-segment [(ngModel)]="mode" color="light">
       <ion-segment-button value="connect">
         <ion-icon name="person"></ion-icon>
       </ion-segment-button>
@@ -13,7 +13,7 @@
 
 <ion-content padding [ngSwitch]="mode">
   <ion-grid *ngSwitchCase="'connect'">
-    <ion-row>
+    <ion-row padding-bottom="1%">
       <ion-col col-12>
         <ion-title>Connexion</ion-title>
       </ion-col>
@@ -31,7 +31,11 @@
               <ion-input type="password" formControlName="password"></ion-input>
             </ion-item>
           </ion-list>
-          <button ion-button full (click)="onSubmitForm()">Connexion</button>
+          <button ion-button full
+                  (click)="onSubmitForm()"
+                  color="secondary" round>
+            Connexion
+          </button>
           <span ion-text color="danger">{{ errorMessage }}</span>
         </form>
       </ion-col>
@@ -39,7 +43,7 @@
   </ion-grid>
 
   <ion-grid *ngSwitchCase="'new'">
-    <ion-row>
+    <ion-row padding-bottom="1%">
       <ion-col col-12>
         <ion-title>Nouvel utilisateur</ion-title>
       </ion-col>
@@ -61,7 +65,11 @@
               <ion-input type="password" formControlName="password"></ion-input>
             </ion-item>
           </ion-list>
-          <button ion-button full (click)="onSubmitForm()">Créer mon compte</button>
+          <button ion-button full
+                  (click)="onSubmitForm()"
+                  color="secondary" round>
+            Créer mon compte
+          </button>
           <span ion-text color="danger">{{ errorMessage }}</span>
         </form>
       </ion-col>

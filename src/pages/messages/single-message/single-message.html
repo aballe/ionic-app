@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar color="header">
-    <ion-title>John Doe</ion-title>
+    <ion-title>{{ contact.name }} {{ contact.lastname }}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -34,7 +34,15 @@
 </ion-content>
 
 <ion-footer>
-  <ion-textarea placeholder="Saisissez votre message...">
-    <button type="button" name="button"></button>
-  </ion-textarea>
+  <form [formGroup]="messageForm">
+    <ion-list class="list-message">
+      <ion-item>
+        <ion-textarea formControlName="message" placeholder="Saisissez votre message..." class="message"></ion-textarea>
+      </ion-item>
+      <button ion-item class="button-message"
+              (click)="onSendMessage()">
+        <ion-icon name="send"></ion-icon>
+      </button>
+    </ion-list>
+  </form>
 </ion-footer>

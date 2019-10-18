@@ -40,26 +40,4 @@ export class ProfilePage implements OnInit {
       }
     );
   }
-
-  presentActionSheet(fileLoader) {
-    /*var that = this;
-    fileLoader.click();
-    fileLoader.onchange = function () {
-      var file = fileLoader.files[0];
-      var reader = new FileReader();
-
-      reader.addEventListener("load", function () {
-        that.processing       = true;
-        that.person.photo = reader.result;
-        that.onChangeProfile();
-      }, false);
-      if (file) {
-        reader.readAsDataURL(file);
-      }
-    }*/
-  }
-
-  imageLoaded(){
-    /*this.processing = false;*/
-  }
 }

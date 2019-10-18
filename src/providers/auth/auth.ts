@@ -13,7 +13,8 @@ export class AuthProvider {
   private headers            = new HttpHeaders({'Content-Type':'application/json'});
   public authenticationState = new BehaviorSubject(false);
   private token              = new BehaviorSubject(null);
-  public userList            = new BehaviorSubject<any>([]);
+  public userContact         = new BehaviorSubject<any>([]);
+  public userNotContact      = new BehaviorSubject<any>([]);
 
   constructor(
     private http:     HttpClient,
@@ -46,12 +47,32 @@ export class AuthProvider {
     return this.http.get<User>("./api/user/" + this.token.value, { headers: this.headers });
   }
 
+  findAllUserContact() {
+    return this.http.get<User[]>("./api/user/contacts/" + this.token.value, { headers: this.headers });
+  }
+
+  findAllUserNotContact() {
+    return this.http.get<User[]>("./api/user/not_contact/" + this.token.value, { headers: this.headers });
+  }
+
+  findOneUserContact(token: string) {
+    return this.http.get<User>("./api/user/contact/" + token, { headers: this.headers });
+  }
+
   createOneUser(username: string, email: string, password: string) {
     return this.http.post<User>("./api/register", new User(username, email, password, null, null, null, null, this.generateToken()), { headers: this.headers });
   }
 
+  createOneUserContact(user_email, contact_email) {
+    return this.http.post<User>("./api/user/new/contact", {user1: user_email, user2: contact_email}, { headers: this.headers });
+  }
+
   updateOneUserConnected(user: User) {
     return this.http.post<any>("./api/user/edit", user, { headers: this.headers });
+  }
+
+  removeOneUser() {
+    return this.http.delete<any>("./api/user/remove/" + this.token.value, { headers: this.headers });
   }
 
   checkToken() {
@@ -105,10 +126,21 @@ export class AuthProvider {
     return ('0' + dec.toString(16)).substr(-2)
   }
 
-  emitUsers() {
+  emitUserContact() {
+    this.findAllUserContact().subscribe(
+      (values) => {
+        this.userContact.next(values);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
+  emitUserNotContact() {
     this.findAllUsers().subscribe(
       (values) => {
-        this.userList.next(values);
+        this.userNotContact.next(values);
       },
       (err) => {
         console.log(err);
