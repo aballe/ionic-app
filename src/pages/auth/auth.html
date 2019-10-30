@@ -33,10 +33,10 @@
           </ion-list>
           <button ion-button full
                   (click)="onSubmitForm()"
-                  color="secondary" round>
+                  color="danger" round>
             Connexion
           </button>
-          <span ion-text color="danger">{{ errorMessage }}</span>
+          <span ion-text color="danger">{{ loginErrorMessage }}</span>
         </form>
       </ion-col>
     </ion-row>
@@ -67,10 +67,10 @@
           </ion-list>
           <button ion-button full
                   (click)="onSubmitForm()"
-                  color="secondary" round>
+                  color="danger" round>
             Créer mon compte
           </button>
-          <span ion-text color="danger">{{ errorMessage }}</span>
+          <span ion-text color="danger">{{ registerErrorMessage }}</span>
         </form>
       </ion-col>
     </ion-row>

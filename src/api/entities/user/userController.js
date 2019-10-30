@@ -66,7 +66,11 @@ router.post('/user/edit', function(req, res) {
 router.post('/user/new/contact', function(req, res) {
   User.createOneUserContact(req.body, function(err, rows) {
     if (err) {
-      res.status(400).json(err);
+      if (err.code == 'ER_DUP_ENTRY') {
+        res.sendStatus(200);
+      } else {
+        res.status(400).json(err);
+      }
     } else {
       res.json(req.body);
     }
@@ -75,6 +79,16 @@ router.post('/user/new/contact', function(req, res) {
 
 router.get('/user/contacts/:token', function(req, res) {
   User.findAllUsersContact(req.params.token, function(err, rows) {
+    if (err) {
+      res.status(400).json(err);
+    } else {
+      res.send(rows);
+    }
+  });
+});
+
+router.post('/user/list/contact/message', function(req, res) {
+  User.findAllUsersContactMessage(req.body, function(err, rows) {
     if (err) {
       res.status(400).json(err);
     } else {
@@ -97,6 +111,20 @@ router.delete('/user/remove/:token', function(req, res) {
   User.removeOneUserByToken(req.params.token, function(err, rows) {
     if (err) {
       res.status(400).json(err);
+    } else {
+      res.json(req.body);
+    }
+  });
+});
+
+router.post('/user/new/contact/message', function(req, res) {
+  User.createOneUserContactMessage(req.body, function(err, rows) {
+    if (err) {
+      if (err.code == 'ER_DUP_ENTRY') {
+        res.sendStatus(200);
+      } else {
+        res.status(400).json(err);
+      }
     } else {
       res.json(req.body);
     }

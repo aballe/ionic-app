@@ -5,11 +5,13 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpClientModule } from "@angular/common/http";
 import { IonicStorageModule } from "@ionic/storage";
-import { Camera } from "@ionic-native/camera/ngx";
-import { File } from "@ionic-native/file/ngx";
+import { Camera } from "@ionic-native/camera";
+import { File } from "@ionic-native/file";
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 
 import { MyApp } from './app.component';
 
+import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { ProfilePage } from '../pages/profile/profile';
 import { MessagesPage } from '../pages/messages/messages';
@@ -23,6 +25,7 @@ import { AuthProvider } from '../providers/auth/auth';
 @NgModule({
   declarations: [
     MyApp,
+    HomePage,
     TabsPage,
     MessagesPage,
     ProfilePage,
@@ -40,6 +43,7 @@ import { AuthProvider } from '../providers/auth/auth';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    HomePage,
     TabsPage,
     MessagesPage,
     ProfilePage,
@@ -54,6 +58,8 @@ import { AuthProvider } from '../providers/auth/auth';
     AuthProvider,
     Camera,
     File,
+    FileTransfer,
+    FileTransferObject,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
   ]
 })

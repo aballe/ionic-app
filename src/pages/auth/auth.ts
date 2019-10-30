@@ -11,7 +11,8 @@ import {TabsPage} from "../tabs/tabs";
 })
 export class AuthPage implements OnInit {
   mode:         string;
-  errorMessage: string;
+  loginErrorMessage: string;
+  registerErrorMessage: string;
   connectForm:  FormGroup;
   newForm:      FormGroup;
 
@@ -65,7 +66,7 @@ export class AuthPage implements OnInit {
         },
         (error) => {
           loader.dismiss();
-          this.errorMessage = error.error;
+          this.registerErrorMessage = typeof error.error == "object" ? "Une erreur est survenue" : error.error;
         }
       );
     } else if (this.mode === 'connect') {
@@ -87,7 +88,7 @@ export class AuthPage implements OnInit {
         },
         (error) => {
           loader.dismiss();
-          this.errorMessage = error.error;
+          this.loginErrorMessage = typeof error.error == "object" ? "Une erreur est survenue" : error.error;
         }
       );
     }

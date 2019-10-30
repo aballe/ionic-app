@@ -7,8 +7,9 @@ export class User {
     public photo:       string = '../../assets/imgs/avatar.svg',
     public age:         number = 0,
     public name:        string = '',
+    public token:       string = '',
     public lastname:    string = '',
     public sexe:        string = '',
-    public token:       string = ''
+    public id:          number = 0
   ) {}
 }

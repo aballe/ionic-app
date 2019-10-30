@@ -1,48 +1,37 @@
 <ion-header>
   <ion-navbar color="header">
-    <ion-title>{{ contact.name }} {{ contact.lastname }}</ion-title>
+    <ion-title>{{ contact ? contact.name : null }} {{ contact ? contact.lastname : null }}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item>
-      <ion-avatar class="avatar" item-start>
+  <ion-list *ngIf="contact && user">
+    <ion-item *ngFor="let message of messages">
+      <ion-avatar class="avatar" item-start *ngIf="message.expediteur == contact.username">
         <img src="../../assets/imgs/avatar.svg" alt="avatar">
       </ion-avatar>
-      <ion-label>
-        <p>Salut !</p>
+      <ion-label *ngIf="message.expediteur == contact.username">
+        <p>{{ message.message }}</p>
       </ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-avatar class="avatar" item-end>
+
+      <ion-avatar class="avatar" item-end *ngIf="message.expediteur == user.username">
         <img src="../../assets/imgs/avatar.svg" alt="avatar">
       </ion-avatar>
-      <ion-label text-right>
-        <p>Salut !</p>
-      </ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-avatar class="avatar" item-start>
-        <img src="../../assets/imgs/avatar.svg" alt="avatar">
-      </ion-avatar>
-      <ion-label>
-        <p>Cava ?</p>
+      <ion-label text-right *ngIf="message.expediteur == user.username">
+        <p>{{ message.message }}</p>
       </ion-label>
     </ion-item>
   </ion-list>
 </ion-content>
 
 <ion-footer>
-  <form [formGroup]="messageForm">
-    <ion-list class="list-message">
-      <ion-item>
-        <ion-textarea formControlName="message" placeholder="Saisissez votre message..." class="message"></ion-textarea>
-      </ion-item>
-      <button ion-item class="button-message"
-              (click)="onSendMessage()">
-        <ion-icon name="send"></ion-icon>
-      </button>
-    </ion-list>
-  </form>
+  <ion-list class="list-message">
+    <ion-item>
+      <ion-textarea [(ngModel)]="messageText" placeholder="Saisissez votre message..." class="message"></ion-textarea>
+    </ion-item>
+    <button ion-item class="button-message"
+            (click)="onSendMessage()">
+      <ion-icon name="send"></ion-icon>
+    </button>
+  </ion-list>
 </ion-footer>

@@ -9,8 +9,9 @@
 
 <ion-content padding class="content">
   <div align="center">
-    <ion-avatar class="avatar ion-margin-start">
-      <img src="../../assets/imgs/avatar.svg">
+    <ion-avatar class="avatar ion-margin-start" (click)="onTakePhoto()">
+      <img src="../../assets/imgs/avatar.svg" *ngIf="!imageUrl">
+      <img src="imageUrl" *ngIf="imageUrl">
     </ion-avatar>
     <ion-grid>
       <ion-row>

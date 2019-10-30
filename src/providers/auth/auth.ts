@@ -15,6 +15,7 @@ export class AuthProvider {
   private token              = new BehaviorSubject(null);
   public userContact         = new BehaviorSubject<any>([]);
   public userNotContact      = new BehaviorSubject<any>([]);
+  public messages            = new BehaviorSubject<any>([]);
 
   constructor(
     private http:     HttpClient,
@@ -55,6 +56,10 @@ export class AuthProvider {
     return this.http.get<User[]>("./api/user/not_contact/" + this.token.value, { headers: this.headers });
   }
 
+  findAllUsersContactMessage(user1, user2) {
+    return this.http.post<any>("./api/user/list/contact/message", {user1: user1, user2: user2}, { headers: this.headers });
+  }
+
   findOneUserContact(token: string) {
     return this.http.get<User>("./api/user/contact/" + token, { headers: this.headers });
   }
@@ -65,6 +70,10 @@ export class AuthProvider {
 
   createOneUserContact(user_email, contact_email) {
     return this.http.post<User>("./api/user/new/contact", {user1: user_email, user2: contact_email}, { headers: this.headers });
+  }
+
+  createOneUserContactMessage(message: string, user: number, contact: number) {
+    return this.http.post<any>("./api/user/new/contact/message", {message: message, user: user, contact: contact}, { headers: this.headers });
   }
 
   updateOneUserConnected(user: User) {
@@ -141,6 +150,17 @@ export class AuthProvider {
     this.findAllUsers().subscribe(
       (values) => {
         this.userNotContact.next(values);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
+  emitUserContactMessages(user, contact) {
+    this.findAllUsersContactMessage(user, contact).subscribe(
+      (values) => {
+        this.messages.next(values);
       },
       (err) => {
         console.log(err);
