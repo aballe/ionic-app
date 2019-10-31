@@ -23,6 +23,7 @@ export class ListContactPage implements OnInit {
     this.authProvider.userNotContact.subscribe(
       (values) => {
         this.contactList = values;
+        console.log(values);
       },
       (err) => {
         console.log(err);

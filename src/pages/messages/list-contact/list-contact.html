@@ -19,10 +19,10 @@
         <img src="../../../assets/imgs/avatar.svg" alt="avatar">
       </ion-avatar>
       <ion-label *ngIf="contact.name && contact.lastname">
-        {{ contact.name }} {{ contact.lastname }}
+        {{ contact ? contact.name : null }} {{ contact ? contact.lastname : null }}
       </ion-label>
       <ion-label *ngIf="!contact.name && !contact.lastname">
-        {{ contact.username }} ({{ contact.email }})
+        {{ contact ? contact.username : null }} ({{ contact ? contact.email : null }})
       </ion-label>
     </button>
   </ion-list>

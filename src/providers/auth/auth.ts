@@ -33,6 +33,11 @@ export class AuthProvider {
     return this.http.get<User[]>("./api/users");
   }
 
+  findAllUsersNotConnected() {
+    console.log("here");
+    return this.http.get<User[]>("./api/users/not/" + this.token.value, { headers: this.headers });
+  }
+
   findOneUser(user: string, password: string) {
     var email    = "";
     var username = "";
@@ -147,7 +152,7 @@ export class AuthProvider {
   }
 
   emitUserNotContact() {
-    this.findAllUsers().subscribe(
+    this.findAllUsersNotConnected().subscribe(
       (values) => {
         this.userNotContact.next(values);
       },

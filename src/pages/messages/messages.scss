@@ -2,7 +2,21 @@ page-messages {
   ion-avatar,
   ion-avatar > img{
     border-radius:50%;
-    height:5rem;
-    width:5rem;
+    height:7rem;
+    margin:auto;
+    width:7rem;
+  }
+
+  .col {
+    margin: 5px
+  }
+
+  .card {
+    padding: 10px;
+    height: 135px;
+  }
+
+  .card h3 {
+    color: white
   }
 }

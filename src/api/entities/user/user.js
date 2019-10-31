@@ -9,6 +9,9 @@ var User 	= {
   findOneUserByToken: function(token, callback) {
     return db.query('SELECT * FROM user WHERE token = ?', token, callback);
   },
+  findAllUsersNotConnected: function(token, callback) {
+    return db.query('SELECT * FROM user WHERE token != ?', token, callback);
+  },
   findAllUsersContact: function(token, callback) {
     return db.query('SELECT _u2.name, _u2.lastname, _u2.token FROM user_contact _uc INNER JOIN user _u1 ON _uc.user_id = _u1.id INNER JOIN user _u2 ON _uc.contact_id = _u2.id WHERE _u1.token = ?', token, callback);
   },

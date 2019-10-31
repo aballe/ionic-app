@@ -97,6 +97,17 @@ router.post('/user/list/contact/message', function(req, res) {
   });
 });
 
+router.get('/users/not/:token', function(req, res) {
+  User.findAllUsersNotConnected(req.params.token, function(err, rows) {
+    if (err) {
+      res.status(400).json(err);
+    } else {
+      res.send(rows);
+    }
+  });
+});
+
+
 router.get('/user/contact/:token', function(req, res) {
   User.findOneUserByToken(req.params.token, function(err, rows) {
     if (err) {

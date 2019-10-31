@@ -5,28 +5,29 @@
 </ion-header>
 
 <ion-content>
-  <ion-list *ngIf="contact && user">
-    <ion-item *ngFor="let message of messages">
-      <ion-avatar class="avatar" item-start *ngIf="message.expediteur == contact.username">
-        <img src="../../assets/imgs/avatar.svg" alt="avatar">
-      </ion-avatar>
-      <ion-label *ngIf="message.expediteur == contact.username">
-        <p>{{ message.message }}</p>
-      </ion-label>
-
-      <ion-avatar class="avatar" item-end *ngIf="message.expediteur == user.username">
-        <img src="../../assets/imgs/avatar.svg" alt="avatar">
-      </ion-avatar>
-      <ion-label text-right *ngIf="message.expediteur == user.username">
-        <p>{{ message.message }}</p>
-      </ion-label>
-    </ion-item>
-  </ion-list>
+  <div class="message-wrap" *ngIf="contact && user">
+    <div *ngFor="let message of messages"
+         class="message"
+         [class.left]="message.expediteur == contact.username"
+         [class.right]="message.expediteur == user.username">
+      <img class="user-img" src="../../../assets/imgs/avatar.svg" alt="">
+      <div class="msg-detail">
+        <div class="msg-info">
+          <p>
+            {{message.expediteur}}</p>
+        </div>
+        <div class="msg-content">
+          <span class="triangle"></span>
+          <p class="line-breaker ">{{message.message}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </ion-content>
 
 <ion-footer>
   <ion-list class="list-message">
-    <ion-item>
+    <ion-item style="padding:0;">
       <ion-textarea [(ngModel)]="messageText" placeholder="Saisissez votre message..." class="message"></ion-textarea>
     </ion-item>
     <button ion-item class="button-message"

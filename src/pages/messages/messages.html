@@ -13,25 +13,18 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item-sliding #item *ngFor="let contact of contactList;">
-      <button ion-item (click)="onLoadMessage(contact.token)">
-        <ion-avatar slot="end" class="avatar" item-start>
-          <img src="../../assets/imgs/avatar.svg" alt="avatar">
-        </ion-avatar>
-        <ion-label>
-          <h3>{{ contact.name }} {{ contact.lastname }}</h3>
-          <p class="text">dolor sit amet</p>
-          <p class="text">consectetur adipiscing elit. Duis ut urna neque.</p>
-        </ion-label>
-      </button>
-
-      <ion-item-options side="right">
-        <button ion-button color="danger" (click)="remove(item)">
-          <ion-icon name="trash"></ion-icon>
-          Delete
-        </button>
-      </ion-item-options>
-    </ion-item-sliding>
-  </ion-list>
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let contact of contactList;">
+        <ion-card (click)="onLoadMessage(contact.token)">
+          <ion-avatar class="avatar">
+            <img src="../../assets/imgs/avatar.svg" alt="avatar">
+          </ion-avatar>
+          <ion-card-content text-center>
+            <h3>{{ contact.name }} {{ contact.lastname }}</h3>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

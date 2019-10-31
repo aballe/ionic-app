@@ -7,36 +7,34 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding class="content">
-  <div align="center">
+<ion-content class="content">
+  <div align="center" margin-top="50px" padding-bottom="30px">
     <ion-avatar class="avatar ion-margin-start" (click)="onTakePhoto()">
       <img src="../../assets/imgs/avatar.svg" *ngIf="!imageUrl">
       <img src="imageUrl" *ngIf="imageUrl">
     </ion-avatar>
-    <ion-grid>
-      <ion-row>
-        <ion-col col-6>
-          <ion-input [(ngModel)]="person.name" text-right style="font-size: 25px" (ionBlur)="onChangeProfile();"></ion-input>
-        </ion-col>
-        <ion-col col-6>
-          <ion-input [(ngModel)]="person.lastname" text-left style="font-size: 25px" (ionBlur)="onChangeProfile();"></ion-input>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col col-12>
-          <ion-input [(ngModel)]="person.email" text-center style="font-size: 15px" (ionBlur)="onChangeProfile();"></ion-input>
-        </ion-col>
-      </ion-row>
-      <ion-row *ngIf="person.age && person.sexe">
-        <ion-col col-12>
-             {{ person.age }}, {{ person.sexe }}
-        </ion-col>
-      </ion-row>
-      <ion-row padding-top="2%">
-        <ion-col col-12 text-center>
-          <ion-textarea placeholder="Dites nous en plus sur vous..." [(ngModel)]="person.description" (ionBlur)="onChangeProfile();"></ion-textarea>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+    <ion-label style="font-size: 2rem;">{{ person.lastname }} {{ person.name }}</ion-label>
+    <p style="font-size: 1.5rem;">@{{ person.username }}, {{ person.sexe }}</p>
   </div>
+  <ion-list style="right:0; left:0; margin:0; bottom: 0; position: fixed">
+    <ion-item>
+      <ion-label>Prénom</ion-label>
+      <ion-input [(ngModel)]="person.name" text-right (ionBlur)="onChangeProfile();"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Nom</ion-label>
+      <ion-input [(ngModel)]="person.lastname" text-right (ionBlur)="onChangeProfile();"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Pseudo</ion-label>
+      <ion-input [(ngModel)]="person.username" text-right (ionBlur)="onChangeProfile();"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Email</ion-label>
+      <ion-input [(ngModel)]="person.email" text-right (ionBlur)="onChangeProfile();"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-textarea style="padding-top:10px" placeholder="Dites nous en plus sur vous..." [(ngModel)]="person.description" (ionBlur)="onChangeProfile();"></ion-textarea>
+    </ion-item>
+  </ion-list>
 </ion-content>

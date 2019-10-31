@@ -9,4 +9,21 @@ page-profile {
   .text-input-md {
     margin:0;
   }
+
+  .item-md {
+    background: #9401FA;
+    padding-left: 0px !important;
+  }
+
+  .item-md ion-label, ion-textarea {
+    margin-left: 10px;
+  }
+
+  .item-input .label-md {
+    color: #262126;
+  }
+
+  ion-content {
+    background: linear-gradient(to bottom, rgba(90, 93, 165, 1), rgba(0, 0, 0, .7)), url('../../assets/imgs/background.jpg') center no-repeat;
+  }
 }
